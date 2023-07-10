@@ -1,4 +1,5 @@
 import { User, Session } from 'next-auth'
+import { MouseEventHandler } from 'react';
 
 export type FormState = {
     title: string;
@@ -29,6 +30,17 @@ export interface ProjectInterface {
       id: string;
     };
 }
+
+export type Provider = {
+  id: string;
+  name: string;
+  type: string;
+  singinUrl: string;
+  callbackUrl: string;
+  signinUrlParams?: Record<string, string> | undefined;
+}
+
+export type Providers = Record<string, Provider>;
 
 export interface UserProfile {
     id: string;
@@ -65,4 +77,36 @@ export interface ProjectForm {
   liveSiteUrl: string;
   githubUrl: string;
   category: string;
+}
+
+export type ProjectProps = {
+  type: string,
+  session: SessionInterface
+}
+
+export type FormFieldProps = {
+  type?: string;
+  title: string;
+  state: string;
+  placeholder: string;
+  isTextArea?: boolean;
+  setState: (value: string) => void
+}
+
+export type CustomFieldProps = {
+  title: string;
+  state: string;
+  filters: Array<string>;
+  setState: (value: string) => void
+}
+
+export type CustomButtonProps = {
+  title: string;
+  leftIcon?: string | null;
+  rightIcon?: string | null;
+  handleClick?: MouseEventHandler;
+  isSubmitting?: boolean;
+  type?: 'button' | 'submit';
+  bgColor?: string;
+  textColor?: string;
 }
